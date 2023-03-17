@@ -1,8 +1,11 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import ApexCharts, { lastDate, data, XAXISRANGE, getNewSeries } from "apexcharts";
+
 
 class ApexChart extends React.Component {
   constructor(props) {
+    console.log("constructor called")
     super(props);
 
     this.state = {
@@ -60,6 +63,7 @@ class ApexChart extends React.Component {
 
   componentDidMount() {
     window.setInterval(() => {
+      console.log("Timer")
       getNewSeries(lastDate, {
         min: 10,
         max: 90
