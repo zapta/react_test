@@ -10,7 +10,8 @@ class ApexChart extends React.Component {
 
     this.state = {
       series: [{
-        data: data.slice()
+        name: 'mySeries',
+        data: [[1, 34], [3, 54], [5, 23], [15, 43]]
       }],
       options: {
         chart: {
@@ -45,8 +46,7 @@ class ApexChart extends React.Component {
           size: 0
         },
         xaxis: {
-          type: 'datetime',
-          range: XAXISRANGE,
+          type: 'numeric'
         },
         yaxis: {
           max: 100
@@ -55,23 +55,30 @@ class ApexChart extends React.Component {
           show: false
         },
       },
-
-
     };
+
+    console.log("constructor() exit")
   }
 
 
-  componentDidMount() {
+  componentDidMount = ()=> {
     window.setInterval(() => {
-      console.log("Timer")
-      getNewSeries(lastDate, {
-        min: 10,
-        max: 90
-      })
-      ApexCharts.exec('realtime', 'updateSeries', [{
-        data: data
-      }])
-    }, 1000)
+      console.log("Timer called")
+      // getNewSeries(lastDate, {
+      //   min: 10,
+      //   max: 90
+      // })
+      // ApexCharts.exec('realtime', 'updateSeries', [{
+      //   data: data
+      // }])
+      // 'realtime' is the id of the chart as we set above.
+      ApexCharts.exec('realtime', 'updateSeries',
+        [{
+          name: 'mySeries',
+          data: [[32, 44], [31, 90]]
+        }]
+      )
+    }, 3000)
   }
 
 
